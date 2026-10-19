@@ -91,7 +91,7 @@ def montar_prompt(pose: Dict[str, Any], pedido: Dict[str, Any], n_refs: int, tem
 # ------------------------------------------------------------------ gerar
 def _mock(prompt: str, imagens: List[Image.Image], largura: int, altura: int, seed: int) -> Image.Image:
     rnd = random.Random(seed)
-    im = Image.new("RGB", (largura, altura), (255, 255, 255))
+    im = Image.new("RGB", (largura, altura), (0, 255, 0) if "GREEN" in prompt.upper() else (255, 255, 255))
     d = ImageDraw.Draw(im)
     cor = (rnd.randint(20, 90), rnd.randint(20, 60), rnd.randint(60, 140))
     cx = largura // 2 + rnd.randint(-60, 60)
@@ -125,8 +125,10 @@ def gerar(prompt: str, imagens: List[Image.Image], largura: int, altura: int, pa
 def mascara(img: Image.Image) -> Image.Image:
     """Alfa da personagem (L, 0–255)."""
     if MOCK:
-        cinza = img.convert("L")
-        return cinza.point(lambda v: 255 if v < 245 else 0).filter(ImageFilter.MedianFilter(3))
+        import numpy as np
+        c = np.asarray(img.convert("RGB")).astype(int)
+        fundo = (c.min(axis=2) >= 245) | ((c[..., 1] > 200) & (c[..., 0] < 60) & (c[..., 2] < 60))
+        return Image.fromarray(((~fundo) * 255).astype("uint8"), "L").filter(ImageFilter.MedianFilter(3))
     import torch
     from torchvision import transforms
     tf = transforms.Compose([transforms.Resize((1024, 1024)), transforms.ToTensor(),
@@ -135,6 +137,102 @@ def mascara(img: Image.Image) -> Image.Image:
     with torch.no_grad():
         pred = _birefnet(x)[-1].sigmoid().cpu()[0].squeeze()
     return transforms.ToPILImage()(pred.float()).resize(img.size, Image.LANCZOS)
+
+
+PADRAO_LIMPEZA = {"fundo": "branco", "ilhas": True, "ilha_min": 0.02, "furos_px": 400, "fundo_preso": True, "branco_min": 248, "fundo_preso_px": 600,
+                  "erodir": 1, "halo": True, "suavizar": 0.6}
+
+
+def limpar(img: Image.Image, alfa: Image.Image, opcoes: Optional[Dict[str, Any]] = None) -> Tuple[Image.Image, Image.Image, Dict[str, Any]]:
+    """🧹 Limpa o recorte. fundo "verde" (recomendado: chroma key — o verde preso entre os fios do cabelo sai também,
+    e o reflexo verde da borda é neutralizado) ou "branco" (os passos 3 e 5 abaixo):
+      1. ilhas  — some com os pontinhos soltos (pedaços < ilha_min do maior pedaço); objeto separado grande
+                  (ex.: o buraco negro flutuando sobre a mão) fica;
+      2. furos  — fecha os furinhos DENTRO da personagem (< furos_px pixels) que o recorte deixou; vão de verdade
+                  (entre o braço e o corpo) é grande e continua transparente;
+      3. fundo_preso — o branco PURO do fundo que o recorte marcou como personagem vira transparente: o que
+                  encosta no lado de fora (entre as pernas, em volta do cabelo e de um objeto, qualquer tamanho) e mancha
+                  grande fechada (≥ fundo_preso_px). Só branco puro e sem cor (média ≥ 242) — camisa marfim, babado e
+                  o brilho do olho ficam;
+      4. erodir — come N px da borda (onde o branco do fundo ainda gruda);
+      5. halo   — "descontamina" a borda semitransparente: tira o branco que vazou na cor (cabelo sem auréola);
+      6. suavizar — desfoca 0,6 px só o alfa (borda sem serrilhado).
+    → (imagem RGB limpa, alfa limpo, o que fez)."""
+    import numpy as np
+    o = dict(PADRAO_LIMPEZA, **(opcoes or {}))
+    a = np.asarray(alfa.convert("L"), dtype=np.float32) / 255.0
+    rgb = np.asarray(img.convert("RGB"), dtype=np.float32)
+    feito: Dict[str, Any] = {"ilhas_removidas": 0, "furos_fechados": 0}
+    verde = o.get("fundo") == "verde"
+    if verde:  # 🟩 chroma key: TODO verde do fundo sai — inclusive o preso entre os fios do cabelo
+        r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+        outro = np.maximum(r, b)
+        chave = (g >= 90) & (g > outro * 1.35 + 20)
+        a[chave] = 0.0
+        feito["verde_px"] = int(chave.sum())
+        borda_verde = (a > 0) & (g > outro + 8)
+        excesso = np.clip((g - outro) / 160.0, 0, 1)
+        a[borda_verde] *= 1.0 - excesso[borda_verde]          # borda esverdeada fica mais transparente
+        rgb[..., 1] = np.where(g > outro, outro + (g - outro) * 0.15, g)  # tira o reflexo verde (despill)
+    try:
+        import cv2
+    except ImportError:  # sem OpenCV: só o halo e o limiar
+        cv2 = None
+    if cv2 is not None and o.get("ilhas"):
+        bin_ = (a > 0.5).astype(np.uint8)
+        n, lab, stats, _c = cv2.connectedComponentsWithStats(bin_, connectivity=8)
+        if n > 2:
+            areas = stats[1:, cv2.CC_STAT_AREA]
+            maior = int(areas.max())
+            for k, ar in enumerate(areas, start=1):
+                if ar < maior * float(o["ilha_min"]):
+                    regiao = cv2.dilate((lab == k).astype(np.uint8), np.ones((5, 5), np.uint8)) > 0
+                    a[regiao & (bin_ == 0) | (lab == k)] = 0.0
+                    feito["ilhas_removidas"] += 1
+    if cv2 is not None and int(o.get("furos_px") or 0) > 0:
+        fundo = (a <= 0.5).astype(np.uint8)
+        n, lab, stats, _c = cv2.connectedComponentsWithStats(fundo, connectivity=4)
+        h, w = a.shape
+        for k in range(1, n):
+            x, y, bw, bh, ar = stats[k]
+            toca_borda = x == 0 or y == 0 or x + bw >= w or y + bh >= h
+            if not toca_borda and ar < int(o["furos_px"]):
+                a[lab == k] = 1.0
+                feito["furos_fechados"] += 1
+    if verde:  # o "fechar furinhos" não pode devolver o verde que a chave tirou
+        a[chave] = 0.0
+    if cv2 is not None and o.get("fundo_preso") and not verde:
+        lim = float(o.get("branco_min") or 248)
+        mn = rgb.min(axis=2)
+        claro = ((mn >= lim - 13) & ((rgb.max(axis=2) - mn) <= 8) & (a > 0.5)).astype(np.uint8)
+        n, lab, stats, _c = cv2.connectedComponentsWithStats(claro, connectivity=8)
+        if n > 1:
+            fora = cv2.dilate((a <= 0.5).astype(np.uint8), np.ones((5, 5), np.uint8)) > 0
+            toca = np.bincount(lab[fora & (claro > 0)].ravel(), minlength=n) > 0      # o pedaço encosta no lado de fora
+            media = np.bincount(lab.ravel(), weights=mn.ravel(), minlength=n) / np.maximum(1, stats[:, cv2.CC_STAT_AREA])
+            area = stats[:, cv2.CC_STAT_AREA]
+            sai = np.zeros(n, bool)
+            sai[1:] = (toca[1:] & (media[1:] >= lim - 6)) | ((area[1:] >= int(o.get("fundo_preso_px") or 600)) & (media[1:] >= lim - 2))
+            tirar = sai[lab]
+            if tirar.any():
+                tirar = cv2.dilate(tirar.astype(np.uint8), np.ones((3, 3), np.uint8)) > 0  # a borda clarinha junto
+                quase = (mn >= lim - 30) & ((rgb.max(axis=2) - mn) <= 14)
+                a[tirar & quase] = 0.0
+                feito["fundo_preso_px"] = int((tirar & quase).sum())
+    if cv2 is not None and int(o.get("erodir") or 0) > 0:
+        r = int(o["erodir"])
+        a = cv2.erode(a, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1)))
+    a[a < 0.04] = 0.0
+    a[a > 0.96] = 1.0
+    if o.get("halo") and not verde:
+        borda = (a > 0.0) & (a < 1.0)
+        aa = np.clip(a[borda], 0.05, 1.0)[:, None]
+        rgb[borda] = np.clip((rgb[borda] - (1.0 - aa) * 255.0) / aa, 0, 255)  # C = a·F + (1−a)·branco → F
+        feito["borda_px"] = int(borda.sum())
+    alfa_out = Image.fromarray((a * 255).round().astype(np.uint8), "L")
+    if float(o.get("suavizar") or 0) > 0:
+        alfa_out = alfa_out.filter(ImageFilter.GaussianBlur(float(o["suavizar"])))
+    return Image.fromarray(rgb.round().astype(np.uint8), "RGB"), alfa_out, feito
 
 
 def alinhar(img: Image.Image, alfa: Image.Image, canvas: Tuple[int, int] = (1200, 1800),

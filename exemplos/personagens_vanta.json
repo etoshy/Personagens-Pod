@@ -15,13 +15,20 @@
  "texto_fixo": {
   "trava": "VANTA — CHARACTER LOCK (copy exactly from the reference images) - Androgynous young adult, slim, relaxed slouchy posture, crooked knowing smile. - Hair: short, messy, midnight-navy (#24232A / #526F9A tones), shaggy bangs falling over the forehead. - Eyes: her LEFT eye (image-right when she faces the camera) is a normal amber-gold eye.  Her RIGHT eye (image-left when she faces the camera) is ALWAYS covered by a perfectly round black  \"eclipse / black-hole\" lens with a thin antique-gold ring and a small gold orbit loop — like a monocle.  This eclipse eye never moves to the other side, even when she turns. - Outfit: loose black suit jacket (sleeves slightly pushed up), ivory/off-white shirt, loose black tie,  high-waisted black trousers, a small muted-red star pin on the left lapel, a thin gold chain at the belt. - Accessories: gold orbital earrings (small planet with a ring), chunky black platform shoes (only in full body). - NEVER: both eyes normal, eclipse lens on the wrong eye, long hair, other hair color, colorful suit,  cigarette (do NOT draw cigarettes or smoke — the reference sheet has one, ignore it).",
   "estilo": "ART STYLE (ASTRANEBEL): original 2D gothic-cosmic anime illustration with a classic 1980s hand-painted anime feel — clean consistent line art, cel shading with one or two shadow levels, very subtle film grain, melancholic elegant mood, strong readable silhouette. Exactly the drawing style of the character reference sheet. Palette: near-black #090A0F, charcoal #24232A, dusk blue #526F9A, soft blue #7C9EE8, ivory #F6E8D2, antique gold #C89B5B, muted crimson #A62636, silver gray #A7A9B3. Objects she holds are antique brass/gold, ivory paper or dark leather in the same style. Not 3D, not photorealistic, not glossy, not chibi, not a child.",
-  "regras": "FRAMING AND OUTPUT: a single character alone, half-body shot from the top of the head down to the hips; the hips are cut by the bottom edge of the image (no legs, no feet, no floor). Leave a little empty space above the head; the head is at the same height and scale as in the approved master. Plain flat pure white background (#FFFFFF), no shadow on the ground, no gradient, no glow, no frame. No text, no letters, no question marks, no speech bubbles, no sparkles, no watermark. Soft neutral front lighting. Clean edges."
+  "regras": "FRAMING AND OUTPUT: a single character alone, half-body shot from the top of the head down to the hips; the hips are cut by the bottom edge of the image (no legs, no feet, no floor). Leave a little empty space above the head; the head is at the same height and scale as in the approved master. Plain flat solid chroma-key GREEN background (pure #00FF00) filling everything behind her, also between hair strands and between arms and body; no shadow on the ground, no gradient, no glow, no frame. Nothing green on the character or the objects (no green light, no green reflections, no green clothes). No text, no letters, no question marks, no speech bubbles, no sparkles, no watermark. Soft neutral front lighting. Clean edges."
  },
  "geracao": {
   "largura": 1024,
   "altura": 1536,
   "passos": 40,
   "cfg": 4.0
+ },
+ "fundo": "verde",
+ "limpeza": {
+  "ilhas": true,
+  "furos_px": 400,
+  "erodir": 1,
+  "suavizar": 0.6
  },
  "canvas": [
   1200,
@@ -218,7 +225,7 @@
    "prioridade": 1,
    "lado": "esq",
    "descricao_pt": "neutra, mãos nos bolsos, sorriso torto discreto — falando (boca aberta)",
-   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, on a flat solid chroma-key green background (#00FF00). Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
   },
   {
    "arquivo": "vanta_neutra_dir_boca.png",
@@ -228,7 +235,7 @@
    "prioridade": 1,
    "lado": "dir",
    "descricao_pt": "neutra, mãos nos bolsos, sorriso torto discreto — falando (boca aberta)",
-   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, on a flat solid chroma-key green background (#00FF00). Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
   },
   {
    "arquivo": "vanta_ironica_esq_boca.png",
@@ -238,7 +245,7 @@
    "prioridade": 1,
    "lado": "esq",
    "descricao_pt": "irônica, sorriso de canto, olhar de lado — falando (boca aberta)",
-   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, on a flat solid chroma-key green background (#00FF00). Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
   },
   {
    "arquivo": "vanta_ironica_dir_boca.png",
@@ -248,7 +255,7 @@
    "prioridade": 1,
    "lado": "dir",
    "descricao_pt": "irônica, sorriso de canto, olhar de lado — falando (boca aberta)",
-   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, on a flat solid chroma-key green background (#00FF00). Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
   },
   {
    "arquivo": "vanta_cetica_esq_boca.png",
@@ -258,7 +265,7 @@
    "prioridade": 1,
    "lado": "esq",
    "descricao_pt": "cética, braços cruzados, sobrancelha levantada — falando (boca aberta)",
-   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, on a flat solid chroma-key green background (#00FF00). Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
   },
   {
    "arquivo": "vanta_cetica_dir_boca.png",
@@ -268,7 +275,7 @@
    "prioridade": 1,
    "lado": "dir",
    "descricao_pt": "cética, braços cruzados, sobrancelha levantada — falando (boca aberta)",
-   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, on a flat solid chroma-key green background (#00FF00). Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
   },
   {
    "arquivo": "vanta_explicando_esq_boca.png",
@@ -278,7 +285,7 @@
    "prioridade": 1,
    "lado": "esq",
    "descricao_pt": "explicando, uma mão aberta no ar — falando (boca aberta)",
-   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, on a flat solid chroma-key green background (#00FF00). Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
   },
   {
    "arquivo": "vanta_explicando_dir_boca.png",
@@ -288,7 +295,7 @@
    "prioridade": 1,
    "lado": "dir",
    "descricao_pt": "explicando, uma mão aberta no ar — falando (boca aberta)",
-   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, on a flat solid chroma-key green background (#00FF00). Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
   },
   {
    "arquivo": "vanta_seria_esq_boca.png",
@@ -298,7 +305,7 @@
    "prioridade": 1,
    "lado": "esq",
    "descricao_pt": "séria, sem sorriso — falando (boca aberta)",
-   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, on a flat solid chroma-key green background (#00FF00). Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
   },
   {
    "arquivo": "vanta_seria_dir_boca.png",
@@ -308,7 +315,7 @@
    "prioridade": 1,
    "lado": "dir",
    "descricao_pt": "séria, sem sorriso — falando (boca aberta)",
-   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, on a flat solid chroma-key green background (#00FF00). Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
   },
   {
    "arquivo": "vanta_entediada_esq.png",

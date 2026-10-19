@@ -6,6 +6,10 @@ no seu pod da RunPod:
 - 🎨 **Qwen-Image-Edit-2511** (Apache 2.0) — mesma personagem, pose nova (até 3 imagens de entrada: a ficha +
   a imagem **mestre** aprovada);
 - ✂️ **BiRefNet** (MIT) — tira o fundo;
+- 🧹 **limpeza** depois do recorte — a geração sai em **fundo verde (chroma key)** e todo verde sai, inclusive o
+  preso entre os fios do cabelo, entre o braço e o corpo e em volta de objetos; o reflexo verde da borda é
+  neutralizado; pontinhos soltos somem, furinhos dentro do corpo fecham, a borda perde 1 px e fica suave.
+  (Com `"fundo": "branco"` a limpeza tira o branco puro preso e o halo branco — camisa marfim e olho ficam.);
 - 📐 cada PNG sai **1200 × 1800, transparente**, com a personagem a ~95% da altura e encostada embaixo (o corte do
   quadril é a borda) — a cabeça fica no mesmo lugar em todas as poses.
 
@@ -76,6 +80,7 @@ Próximo passo (depois da prova de conceito): com ~20 aprovadas, treinar um **Lo
   "texto_fixo": {"trava": "VANTA — CHARACTER LOCK …", "estilo": "ART STYLE …", "regras": "TECHNICAL RULES …"},
   "geracao": {"largura": 1024, "altura": 1536, "passos": 40, "cfg": 4.0},
   "canvas": [1200, 1800], "altura_personagem": 0.95, "recortar": true,
+  "fundo": "verde", "limpeza": {"ilhas": true, "furos_px": 400, "erodir": 1, "suavizar": 0.6},
   "poses": [
     {"arquivo": "vanta_cetica_esq.png", "tipo": "pose", "prompt": "skeptical, arms crossed …"},
     {"arquivo": "vanta_cetica_esq_boca.png", "tipo": "boca", "base": "vanta_cetica_esq.png", "prompt": "Keep everything identical …"}

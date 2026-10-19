@@ -57,12 +57,12 @@ def protegido(fn):
     return _f
 
 
-def _abrir(caminho: Path) -> Image.Image:
+def _abrir(caminho: Path, cor_fundo=(255, 255, 255)) -> Image.Image:
     from PIL import ImageOps
     im = ImageOps.exif_transpose(Image.open(caminho))
-    if im.mode in ("RGBA", "LA", "P"):  # referência transparente: põe em fundo branco
+    if im.mode in ("RGBA", "LA", "P"):  # referência transparente (a mestre, a base da _boca): põe no fundo da geração
         im = im.convert("RGBA")
-        fundo = Image.new("RGB", im.size, (255, 255, 255))
+        fundo = Image.new("RGB", im.size, tuple(cor_fundo))
         fundo.paste(im, mask=im.split()[3])
         im = fundo
     im = im.convert("RGB")
@@ -107,15 +107,16 @@ def _uma_volta(jid, d, ped, g, canvas, refs, mestre, poses, ordem) -> None:
         fila.mudar(jid, mensagem=f"gerando {arquivo}")
         try:
             t = time.time()
+            cor = (0, 255, 0) if ped.get("fundo") == "verde" else (255, 255, 255)
             if p.get("tipo") == "boca":
                 base = d / "bruto" / Path(p["base"]).name
                 if not base.exists():
                     base = d / "refs" / Path(p["base"]).name
                 if not base.exists():
                     raise ValueError(f"falta a imagem base {p['base']} (gere/aprove ela antes)")
-                imagens = [_abrir(base)]
+                imagens = [_abrir(base, cor)]
             else:
-                imagens = [_abrir(r) for r in refs] + ([_abrir(mestre)] if mestre else [])
+                imagens = [_abrir(r, cor) for r in refs] + ([_abrir(mestre, cor)] if mestre else [])
                 imagens = imagens[-MAX_IMAGENS:] if len(imagens) > MAX_IMAGENS else imagens
             prompt = gerador.montar_prompt(p, ped, len(refs), bool(mestre))
             extra = it.get("extra") or p.get("extra")  # correção pedida no refazer (no job ou na pose)
@@ -126,12 +127,22 @@ def _uma_volta(jid, d, ped, g, canvas, refs, mestre, poses, ordem) -> None:
             img.save(d / "bruto" / arquivo)
             info: Dict[str, Any] = {}
             if ped.get("recortar", True):
-                final, info = gerador.alinhar(img, gerador.mascara(img), canvas, float(ped.get("altura_personagem") or 0.95))
+                alfa = gerador.mascara(img)
+                limpeza: Dict[str, Any] = {}
+                if ped.get("limpeza", True) is not False:  # 🧹 ilhas, furos, borda, halo branco
+                    opl = dict(ped.get("limpeza") if isinstance(ped.get("limpeza"), dict) else {})
+                    opl.setdefault("fundo", ped.get("fundo") or "branco")
+                    img_l, alfa, limpeza = gerador.limpar(img, alfa, opl)
+                else:
+                    img_l = img
+                final, info = gerador.alinhar(img_l, alfa, canvas, float(ped.get("altura_personagem") or 0.95))
+                info["limpeza"] = limpeza
                 final.save(d / "saida" / arquivo, optimize=True)
             else:
                 img.save(d / "saida" / arquivo)
             fila.mudar_item(jid, arquivo, estado="pronto", seed=seed, segundos=round(time.time() - t, 1),
                             versao=int(it.get("versao") or 0) + 1, aviso=info.get("aviso"), prompt=prompt[:4000],
+                            limpeza=info.get("limpeza"),
                             quando=fila.agora())
         except Exception as exc:  # noqa: BLE001
             traceback.print_exc()
