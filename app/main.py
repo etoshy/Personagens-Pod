@@ -48,6 +48,19 @@ def _erro(e: Erro):
     return jsonify({"detail": e.msg}), e.codigo
 
 
+@app.errorhandler(Exception)
+def _erro_inesperado(e: Exception):
+    """Qualquer outro erro: o motivo vai junto na resposta (o editor mostra) e o traceback no log."""
+    from werkzeug.exceptions import HTTPException
+    if isinstance(e, HTTPException):
+        return jsonify({"detail": e.description}), e.code
+    traceback.print_exc()
+    msg = f"{type(e).__name__}: {e}"
+    if isinstance(e, OSError) and getattr(e, "errno", None) == 28:
+        msg = "o disco do pod encheu (No space left on device) — aumente o Network Volume ou apague jobs antigos em /workspace/personagens_data/jobs"
+    return jsonify({"detail": msg[:600]}), 500
+
+
 def protegido(fn):
     @wraps(fn)
     def _f(*a, **k):
