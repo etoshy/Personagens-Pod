@@ -51,7 +51,8 @@ ou `GET /status` (`"modelo": "pronto"`). Se o processo cair, ele volta sozinho e
 | `API_KEY=segredo` | passa a exigir a chave no header `X-API-Key` |
 | `PASSOS=40` `CFG=4.0` | padrão de geração (o editor pode mudar por pedido) |
 | `OFFLOAD=auto\|1\|0` | divide o modelo com a RAM (auto = placa < 70 GB) |
-| `LIGHTNING_REPO=…` `LIGHTNING_FILE=…` | opcional: um LoRA "lightning" do 2511 (gera em 4–8 passos — use `PASSOS=8 CFG=1.0`) |
+| `RAPIDO=1` | ⚡ LoRA [Lightning](https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning): 4 passos e CFG 1 — ~10× mais rápido (os passos do pedido são ignorados). Qualidade um pouco menor: compare com a mestre |
+| `LIGHTNING_REPO=…` `LIGHTNING_FILE=…` | outro LoRA Lightning (o `RAPIDO=1` já preenche os dois) |
 | `MOCK=1` | sem modelo: desenha um boneco (testar o caminho todo sem GPU) |
 
 No fim: **desligue o pod** (Stop mantém o volume).

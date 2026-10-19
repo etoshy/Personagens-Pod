@@ -29,8 +29,9 @@ from . import fila, gerador
 
 API_KEY = os.getenv("API_KEY", "")
 PRELOAD = os.getenv("PRELOAD", "1") == "1"
-PADRAO_GERACAO = {"largura": 1024, "altura": 1536, "passos": int(os.getenv("PASSOS", "40")),
-                  "cfg": float(os.getenv("CFG", "4.0"))}
+_LIGHT = bool(os.getenv("LIGHTNING_REPO"))
+PADRAO_GERACAO = {"largura": 1024, "altura": 1536, "passos": int(os.getenv("PASSOS", "4" if _LIGHT else "40")),
+                  "cfg": float(os.getenv("CFG", "1.0" if _LIGHT else "4.0"))}
 MAX_IMAGENS = 3  # o Qwen-Image-Edit-2511 trabalha bem com até 3 imagens de entrada
 
 app = Flask(__name__)
@@ -88,6 +89,8 @@ def _processar(jid: str) -> None:
     d = fila.pasta(jid)
     ped = fila.pedido(jid)
     g = dict(PADRAO_GERACAO, **(ped.get("geracao") or {}))
+    if gerador.LIGHTNING_REPO:  # ⚡ LoRA Lightning ligado: os passos/CFG dele valem mais que os do pedido (40 passos → 4)
+        g.update(passos=int(os.getenv("PASSOS", "4")), cfg=float(os.getenv("CFG", "1.0")))
     canvas = tuple(ped.get("canvas") or (1200, 1800))
     refs = [d / "refs" / Path(n).name for n in ped.get("referencias") or []]
     mestre = d / "refs" / Path(ped["mestre"]).name if ped.get("mestre") else None
