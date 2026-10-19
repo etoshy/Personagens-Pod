@@ -89,8 +89,19 @@ def _processar(jid: str) -> None:
     d = fila.pasta(jid)
     ped = fila.pedido(jid)
     g = dict(PADRAO_GERACAO, **(ped.get("geracao") or {}))
-    if gerador.LIGHTNING_REPO:  # ⚡ LoRA Lightning ligado: os passos/CFG dele valem mais que os do pedido (40 passos → 4)
-        g.update(passos=int(os.getenv("PASSOS", "4")), cfg=float(os.getenv("CFG", "1.0")))
+    pedidos_passos = (ped.get("geracao") or {}).get("passos")
+    if gerador.LIGHTNING_REPO and g.get("qualidade") != "alta":
+        # ⚡ rápida: LoRA Lightning ligado — 4 passos / CFG 1 (o pedido pode subir pra até 8 passos)
+        p_ = int(os.getenv("PASSOS", "4"))
+        if g.get("qualidade") == "rapida" and pedidos_passos:
+            p_ = max(2, min(8, int(pedidos_passos)))
+        g.update(passos=p_, cfg=float(os.getenv("CFG", "1.0")), lora=True)
+    elif gerador.LIGHTNING_REPO:
+        # 🎨 alta: desliga o LoRA só neste pedido — modelo completo, mais passos e CFG normal (traço mais limpo)
+        cfg_ped = float((ped.get("geracao") or {}).get("cfg") or 0)
+        g.update(passos=int(pedidos_passos) if pedidos_passos and int(pedidos_passos) > 8 else 30,
+                 cfg=cfg_ped if cfg_ped > 1.5 else 4.0, lora=False)
+    g["passos"] = max(1, min(80, int(g["passos"])))
     canvas = tuple(ped.get("canvas") or (1200, 1800))
     refs = [d / "refs" / Path(n).name for n in ped.get("referencias") or []]
     mestre = d / "refs" / Path(ped["mestre"]).name if ped.get("mestre") else None
@@ -139,7 +150,8 @@ def _uma_volta(jid, d, ped, g, canvas, refs, mestre, poses, ordem) -> None:
             if extra:
                 prompt += f"\nCORRECTION FOR THIS ATTEMPT: {extra}"
             seed = int(it.get("seed") or random.randint(1, 2**31 - 1))
-            img = gerador.gerar(prompt, imagens, g["largura"], g["altura"], g["passos"], g["cfg"], seed)
+            img = gerador.gerar(prompt, imagens, g["largura"], g["altura"], g["passos"], g["cfg"], seed,
+                                 lora=g.get("lora"))
             img.save(d / "bruto" / arquivo)
             info: Dict[str, Any] = {}
             if ped.get("recortar", True):
@@ -156,7 +168,8 @@ def _uma_volta(jid, d, ped, g, canvas, refs, mestre, poses, ordem) -> None:
                 final.save(d / "saida" / arquivo, optimize=True)
             else:
                 img.save(d / "saida" / arquivo)
-            fila.mudar_item(jid, arquivo, estado="pronto", seed=seed, segundos=round(time.time() - t, 1),
+            fila.mudar_item(jid, arquivo, estado="pronto", seed=seed, segundos=round(time.time() - t, 1), passos=g["passos"],
+                            qualidade="rapida" if g.get("lora") else ("alta" if g.get("lora") is False else None),
                             versao=int(it.get("versao") or 0) + 1, aviso=info.get("aviso"), prompt=prompt[:4000],
                             limpeza=info.get("limpeza"),
                             quando=fila.agora())

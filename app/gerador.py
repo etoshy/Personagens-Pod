@@ -117,12 +117,24 @@ def _mock(prompt: str, imagens: List[Image.Image], largura: int, altura: int, se
     return im
 
 
-def gerar(prompt: str, imagens: List[Image.Image], largura: int, altura: int, passos: int, cfg: float, seed: int) -> Image.Image:
+def _lora(ligar: Optional[bool]) -> None:
+    """Liga/desliga o LoRA Lightning neste pedido (rápida × alta) sem recarregar o modelo."""
+    if ligar is None or not LIGHTNING_REPO or _pipe is None:
+        return
+    try:
+        (_pipe.enable_lora if ligar else _pipe.disable_lora)()
+    except Exception as exc:  # noqa: BLE001
+        log(f"⚠ não deu pra {'ligar' if ligar else 'desligar'} o LoRA: {exc}")
+
+
+def gerar(prompt: str, imagens: List[Image.Image], largura: int, altura: int, passos: int, cfg: float, seed: int,
+          lora: Optional[bool] = None) -> Image.Image:
     if MOCK:
         time.sleep(0.05)
         return _mock(prompt, imagens, largura, altura, seed)
     import torch
     carregar()
+    _lora(lora)
     gen = torch.Generator("cuda").manual_seed(int(seed))
     kw: Dict[str, Any] = {"image": imagens, "prompt": prompt, "negative_prompt": " ", "true_cfg_scale": float(cfg),
                           "num_inference_steps": int(passos), "generator": gen}
@@ -267,5 +279,10 @@ def alinhar(img: Image.Image, alfa: Image.Image, canvas: Tuple[int, int] = (1200
     out = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     out.paste(fig, ((W - fig.width) // 2, H - fig.height), fig)
     toca_baixo = caixa[3] >= img.height - 4
-    return out, {"escala": round(k, 3), "caixa": list(caixa), "cortada_embaixo": toca_baixo,
-                 "aviso": None if toca_baixo else "a personagem não encosta na borda de baixo (corpo inteiro?) — confira o enquadramento"}
+    lados = [n for n, t in (("esquerda", caixa[0] <= 3), ("direita", caixa[2] >= img.width - 4), ("topo", caixa[1] <= 3)) if t]
+    aviso = None
+    if lados:
+        aviso = "a personagem saiu cortada na borda (" + ", ".join(lados) + ") — refaça (fica um corte reto no PNG)"
+    elif not toca_baixo:
+        aviso = "a personagem não encosta na borda de baixo (corpo inteiro?) — confira o enquadramento"
+    return out, {"escala": round(k, 3), "caixa": list(caixa), "cortada_embaixo": toca_baixo, "cortada_lados": lados, "aviso": aviso}
