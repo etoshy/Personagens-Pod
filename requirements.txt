@@ -11,3 +11,4 @@ einops>=0.8
 requests>=2.31
 opencv-python-headless>=4.9
 peft>=0.15
+bitsandbytes>=0.45

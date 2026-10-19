@@ -20,6 +20,7 @@ RECORTE = os.getenv("RECORTE_MODEL", "ZhengPeng7/BiRefNet")
 OFFLOAD = os.getenv("OFFLOAD", "auto")          # auto | 1 | 0
 LIGHTNING_REPO = os.getenv("LIGHTNING_REPO", "")  # opcional: um LoRA "lightning" (poucos passos) do 2511
 LIGHTNING_FILE = os.getenv("LIGHTNING_FILE", "")
+QUANT = os.getenv("QUANT", "")                  # "" (bf16) | nf4 | int8 — modelo comprimido: cabe INTEIRO numa placa de 48 GB
 
 _pipe = None
 _birefnet = None
@@ -44,12 +45,25 @@ def carregar() -> None:
             import torch
             from diffusers import QwenImageEditPlusPipeline
             log(f"carregando {MODELO} (a 1ª vez baixa ~60 GB pro volume)…")
-            _pipe = QwenImageEditPlusPipeline.from_pretrained(MODELO, torch_dtype=torch.bfloat16)
+            kw: Dict[str, Any] = {}
+            if QUANT in ("nf4", "int8"):
+                # 🗜 o "transformer" (~40 GB) comprimido: nf4 ≈ 11 GB, int8 ≈ 20 GB → o modelo inteiro fica na GPU
+                # (sem dividir com a RAM: mais rápido e sem o processo morrer por falta de RAM)
+                from diffusers import PipelineQuantizationConfig
+                if QUANT == "nf4":
+                    qk = {"load_in_4bit": True, "bnb_4bit_quant_type": "nf4", "bnb_4bit_compute_dtype": torch.bfloat16}
+                    qb = "bitsandbytes_4bit"
+                else:
+                    qk, qb = {"load_in_8bit": True}, "bitsandbytes_8bit"
+                kw["quantization_config"] = PipelineQuantizationConfig(quant_backend=qb, quant_kwargs=qk,
+                                                                       components_to_quantize=["transformer"])
+                log(f"modelo comprimido: {QUANT}")
+            _pipe = QwenImageEditPlusPipeline.from_pretrained(MODELO, torch_dtype=torch.bfloat16, **kw)
             if LIGHTNING_REPO:
                 log(f"LoRA lightning: {LIGHTNING_REPO} {LIGHTNING_FILE}")
                 _pipe.load_lora_weights(LIGHTNING_REPO, **({"weight_name": LIGHTNING_FILE} if LIGHTNING_FILE else {}))
             vram = torch.cuda.get_device_properties(0).total_memory / 1e9
-            usar_offload = OFFLOAD == "1" or (OFFLOAD == "auto" and vram < 70)
+            usar_offload = OFFLOAD == "1" or (OFFLOAD == "auto" and vram < 70 and not QUANT)
             if usar_offload:
                 _pipe.enable_model_cpu_offload()  # placa < 70 GB: cada parte vai pra GPU só na hora dela
             else:

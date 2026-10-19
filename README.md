@@ -20,9 +20,9 @@ e você aprova/refaz. A API também funciona sozinha (`/jobs`).
 
 ## 1. Criar o pod (uma vez)
 
-- **GPU**: o ideal é **80 GB** (A100 80GB / H100) — o modelo (~20B) + o leitor de texto (~7B) cabem inteiros e cada
-  imagem leva ~30–60 s. Na **L40S 48 GB** também roda: o `OFFLOAD=auto` divide com a RAM (mais lento; precisa de
-  ~64 GB de RAM no pod). ⚠ Evite RTX 4090 24 GB pra este modelo.
+- **GPU**: o ideal é **80 GB** (A100 80GB / H100) — o modelo (~20B) + o leitor de texto (~7B) cabem inteiros.
+  Numa **A40 / L40S de 48 GB** use `LEVE=1` (modelo comprimido, tudo na GPU). Sem ele, o modelo é dividido com a RAM:
+  fica MUITO lento e o processo pode morrer por falta de RAM ("Killed", código 137). ⚠ Evite placas de 24 GB.
 - **Template**: RunPod PyTorch (2.4 ou mais novo).
 - **Network Volume** de **~120 GB** em `/workspace` (o modelo tem ~60 GB e fica no volume pras próximas sessões).
 - **Expose HTTP Ports**: `8000`.
@@ -52,6 +52,7 @@ ou `GET /status` (`"modelo": "pronto"`). Se o processo cair, ele volta sozinho e
 | `PASSOS=40` `CFG=4.0` | padrão de geração (o editor pode mudar por pedido) |
 | `OFFLOAD=auto\|1\|0` | divide o modelo com a RAM (auto = placa < 70 GB) |
 | `RAPIDO=1` | ⚡ LoRA [Lightning](https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning): 4 passos e CFG 1 — ~10× mais rápido (os passos do pedido são ignorados). Qualidade um pouco menor: compare com a mestre |
+| `LEVE=1` | 🗜 modelo comprimido (nf4, ~11 GB): cabe inteiro numa placa de **48 GB** (A40/L40S) — sem dividir com a RAM (o processo não morre por falta de RAM e fica mais rápido). `QUANT=int8` comprime menos (≈20 GB, qualidade mais perto do original) |
 | `LIGHTNING_REPO=…` `LIGHTNING_FILE=…` | outro LoRA Lightning (o `RAPIDO=1` já preenche os dois) |
 | `MOCK=1` | sem modelo: desenha um boneco (testar o caminho todo sem GPU) |
 

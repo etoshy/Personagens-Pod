@@ -6,6 +6,8 @@
 #   OFFLOAD=auto|1|0               -> auto: placa < 70 GB divide o modelo com a RAM (mais lento)
 #   MOCK=1                         -> sem modelo (testa o caminho todo sem GPU)
 #   RAPIDO=1                       -> ⚡ LoRA Lightning (4 passos, ~10× mais rápido; qualidade um pouco menor)
+#   LEVE=1                         -> 🗜 modelo comprimido (nf4) — cabe inteiro numa placa de 48 GB (A40/L40S), sem usar a RAM
+#   QUANT=int8                     -> comprimido em 8 bits (≈20 GB, qualidade mais perto do original)
 set -uo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 WS="${WORKSPACE:-/workspace}"
@@ -15,6 +17,10 @@ if [ "${RAPIDO:-0}" = "1" ]; then
   export LIGHTNING_REPO="${LIGHTNING_REPO:-lightx2v/Qwen-Image-Edit-2511-Lightning}"
   export LIGHTNING_FILE="${LIGHTNING_FILE:-Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors}"
   echo "⚡ modo rápido: $LIGHTNING_REPO ($LIGHTNING_FILE) — 4 passos"
+fi
+if [ "${LEVE:-0}" = "1" ]; then
+  export QUANT="${QUANT:-nf4}"
+  echo "🗜 modo leve: modelo comprimido ($QUANT) — tudo na GPU"
 fi
 export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 PY="${PY:-$WS/venvs/personagens/bin/python}"
