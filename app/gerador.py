@@ -93,9 +93,11 @@ def montar_prompt(pose: Dict[str, Any], pedido: Dict[str, Any], n_refs: int, tem
     for k, nome in enumerate(pedido.get("referencias") or [], 1):
         partes.append(f"Image {k} is {desc.get(nome) or 'the official character reference sheet'}.")
     if tem_mestre:
-        partes.append(f"Image {n_refs + 1} is the APPROVED MASTER image of this character — match its face, hair, eyes, "
-                      "outfit, colors, art style, scale and framing exactly.")
-    partes.append(f"Draw ONE new image of this same character, alone: {pose['prompt']}")
+        partes.append(f"Image {n_refs + 1} is the APPROVED MASTER image of this character — copy its identity exactly "
+                      "(face, hair, eyes, outfit, colors, line art, art style) and its scale, but NOT its pose.")
+    partes.append("Draw ONE new image of this same character, alone, in a NEW POSE that is clearly different from the pose "
+                  "in the input images — change the body, arms, hands, head angle and facial expression exactly as described "
+                  f"here: {pose['prompt']}")
     for chave in ("trava", "estilo", "regras"):
         if fixo.get(chave):
             partes.append(str(fixo[chave]))
