@@ -1,0 +1,485 @@
+{
+ "formato": "personagens_pod_v1",
+ "canal": "astranebel",
+ "personagem": "vanta",
+ "nome": "Vanta",
+ "como_usar": "No BestEditor: 🧍 Personagens no pod → Novo → envie as imagens de 'referencias_sugeridas' (até 2) e este JSON. Gere a ⭐ mestre, aprove como mestre, depois gere o resto.",
+ "referencias_sugeridas": [
+  "01_vanta_ficha_completa.png",
+  "03_vanta_detalhe_olho_eclipse.png"
+ ],
+ "descricoes_referencias": {
+  "01_vanta_ficha_completa.png": "the official character reference sheet of Vanta (copy her design exactly; ignore the cigarette in the sheet)",
+  "03_vanta_detalhe_olho_eclipse.png": "a close-up of Vanta's eyes: her RIGHT eye (image-left when facing the camera) is covered by the round black eclipse lens with a thin gold ring"
+ },
+ "texto_fixo": {
+  "trava": "VANTA — CHARACTER LOCK (copy exactly from the reference images) - Androgynous young adult, slim, relaxed slouchy posture, crooked knowing smile. - Hair: short, messy, midnight-navy (#24232A / #526F9A tones), shaggy bangs falling over the forehead. - Eyes: her LEFT eye (image-right when she faces the camera) is a normal amber-gold eye.  Her RIGHT eye (image-left when she faces the camera) is ALWAYS covered by a perfectly round black  \"eclipse / black-hole\" lens with a thin antique-gold ring and a small gold orbit loop — like a monocle.  This eclipse eye never moves to the other side, even when she turns. - Outfit: loose black suit jacket (sleeves slightly pushed up), ivory/off-white shirt, loose black tie,  high-waisted black trousers, a small muted-red star pin on the left lapel, a thin gold chain at the belt. - Accessories: gold orbital earrings (small planet with a ring), chunky black platform shoes (only in full body). - NEVER: both eyes normal, eclipse lens on the wrong eye, long hair, other hair color, colorful suit,  cigarette (do NOT draw cigarettes or smoke — the reference sheet has one, ignore it).",
+  "estilo": "ART STYLE (ASTRANEBEL): original 2D gothic-cosmic anime illustration with a classic 1980s hand-painted anime feel — clean consistent line art, cel shading with one or two shadow levels, very subtle film grain, melancholic elegant mood, strong readable silhouette. Exactly the drawing style of the character reference sheet. Palette: near-black #090A0F, charcoal #24232A, dusk blue #526F9A, soft blue #7C9EE8, ivory #F6E8D2, antique gold #C89B5B, muted crimson #A62636, silver gray #A7A9B3. Objects she holds are antique brass/gold, ivory paper or dark leather in the same style. Not 3D, not photorealistic, not glossy, not chibi, not a child.",
+  "regras": "FRAMING AND OUTPUT: a single character alone, half-body shot from the top of the head down to the hips; the hips are cut by the bottom edge of the image (no legs, no feet, no floor). Leave a little empty space above the head; the head is at the same height and scale as in the approved master. Plain flat pure white background (#FFFFFF), no shadow on the ground, no gradient, no glow, no frame. No text, no letters, no question marks, no speech bubbles, no sparkles, no watermark. Soft neutral front lighting. Clean edges."
+ },
+ "geracao": {
+  "largura": 1024,
+  "altura": 1536,
+  "passos": 40,
+  "cfg": 4.0
+ },
+ "canvas": [
+  1200,
+  1800
+ ],
+ "altura_personagem": 0.95,
+ "poses": [
+  {
+   "arquivo": "vanta_neutra_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "neutra, mãos nos bolsos, sorriso torto discreto",
+   "prompt": "neutral relaxed pose, both hands in trouser pockets, faint crooked smile; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips.",
+   "mestre": true
+  },
+  {
+   "arquivo": "vanta_neutra_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "neutra, mãos nos bolsos, sorriso torto discreto",
+   "prompt": "neutral relaxed pose, both hands in trouser pockets, faint crooked smile; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_ironica_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "irônica, sorriso de canto, olhar de lado",
+   "prompt": "ironic smirk, one corner of the mouth up, amused sideways glance; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_ironica_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "irônica, sorriso de canto, olhar de lado",
+   "prompt": "ironic smirk, one corner of the mouth up, amused sideways glance; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_cetica_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "cética, braços cruzados, sobrancelha levantada",
+   "prompt": "skeptical, arms crossed over the chest, one eyebrow raised, unimpressed; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_cetica_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "cética, braços cruzados, sobrancelha levantada",
+   "prompt": "skeptical, arms crossed over the chest, one eyebrow raised, unimpressed; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_explicando_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "explicando, uma mão aberta no ar",
+   "prompt": "explaining calmly, one open hand raised at chest height, palm up; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_explicando_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "explicando, uma mão aberta no ar",
+   "prompt": "explaining calmly, one open hand raised at chest height, palm up; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_apontando_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "apontando com dois dedos pro centro da tela",
+   "prompt": "pointing toward the center of the frame with two fingers, confident; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_apontando_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "apontando com dois dedos pro centro da tela",
+   "prompt": "pointing toward the center of the frame with two fingers, confident; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_rindo_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "rindo seco, mão perto do rosto",
+   "prompt": "short dry laugh, eyes narrowed, one hand near the face, sharp grin; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_pensando_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "pensando, mão no queixo",
+   "prompt": "thinking, hand on the chin, gaze up and to the side; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_seria_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "séria, sem sorriso",
+   "prompt": "serious, no smile, steady gaze, mouth closed in a flat line; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_seria_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "séria, sem sorriso",
+   "prompt": "serious, no smile, steady gaze, mouth closed in a flat line; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_buraco_negro_na_mao_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "uma esferinha de buraco negro flutuando sobre a palma",
+   "prompt": "a tiny black hole with a glowing golden accretion ring floating above her open palm, looking at it with a smirk; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_buraco_negro_na_mao_dir.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "uma esferinha de buraco negro flutuando sobre a palma",
+   "prompt": "a tiny black hole with a glowing golden accretion ring floating above her open palm, looking at it with a smirk; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_planeta_no_dedo_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "girando um planetinha com anéis na ponta do dedo",
+   "prompt": "spinning a small ringed planet on the tip of her index finger, playful; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_relogio_de_bolso_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "segurando um relógio de bolso antigo (tempo)",
+   "prompt": "holding an antique gold pocket watch by its chain, looking at it; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_fotografia_antiga_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "segurando uma foto antiga, séria (pista da lore)",
+   "prompt": "holding an old faded photograph, serious, no smile (the photo content is not visible); 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_gravador_stop_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "apertando STOP num gravador de fita antigo (lore)",
+   "prompt": "pressing the stop button on a small vintage tape recorder, guarded expression; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_neutra_esq_boca.png",
+   "tipo": "boca",
+   "base": "vanta_neutra_esq.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "neutra, mãos nos bolsos, sorriso torto discreto — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "vanta_neutra_dir_boca.png",
+   "tipo": "boca",
+   "base": "vanta_neutra_dir.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "neutra, mãos nos bolsos, sorriso torto discreto — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "vanta_ironica_esq_boca.png",
+   "tipo": "boca",
+   "base": "vanta_ironica_esq.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "irônica, sorriso de canto, olhar de lado — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "vanta_ironica_dir_boca.png",
+   "tipo": "boca",
+   "base": "vanta_ironica_dir.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "irônica, sorriso de canto, olhar de lado — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "vanta_cetica_esq_boca.png",
+   "tipo": "boca",
+   "base": "vanta_cetica_esq.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "cética, braços cruzados, sobrancelha levantada — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "vanta_cetica_dir_boca.png",
+   "tipo": "boca",
+   "base": "vanta_cetica_dir.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "cética, braços cruzados, sobrancelha levantada — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "vanta_explicando_esq_boca.png",
+   "tipo": "boca",
+   "base": "vanta_explicando_esq.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "explicando, uma mão aberta no ar — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "vanta_explicando_dir_boca.png",
+   "tipo": "boca",
+   "base": "vanta_explicando_dir.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "explicando, uma mão aberta no ar — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "vanta_seria_esq_boca.png",
+   "tipo": "boca",
+   "base": "vanta_seria_esq.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "séria, sem sorriso — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "vanta_seria_dir_boca.png",
+   "tipo": "boca",
+   "base": "vanta_seria_dir.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "séria, sem sorriso — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "vanta_entediada_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "entediada, mão atrás da cabeça (pose da ficha)",
+   "prompt": "bored, one hand scratching the back of her head, half-lidded eye; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_provocando_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "provocando, inclinada pra frente, sorriso de quem sabe",
+   "prompt": "teasing, leaning slightly forward, knowing grin, one finger raised; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_desconfiada_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "desconfiada, olhando de canto",
+   "prompt": "suspicious, eye narrowed, glancing sideways without turning the head; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_surpresa_contida_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "surpresa contida, o sorriso some",
+   "prompt": "caught off guard, the smile disappears, amber eye widened slightly; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_assustada_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "assustada, imóvel e rígida (hábito dela)",
+   "prompt": "genuinely frightened, frozen and rigid, shoulders tense, mouth slightly open; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_mudando_de_assunto_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "mudando de assunto, olha pro lado, mão na nuca",
+   "prompt": "avoiding the question, looking away, hand on the back of the neck, forced smile; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_dando_de_ombros_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "dando de ombros",
+   "prompt": "shrugging with both palms up, indifferent expression; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_ampulheta_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "segurando uma ampulheta (tempo / dilatação)",
+   "prompt": "holding an hourglass at eye level, sand falling; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_luneta_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "segurando uma luneta de latão fechada",
+   "prompt": "holding a closed brass spyglass under one arm; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_olhando_luneta_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "olhando por uma luneta",
+   "prompt": "looking through a brass spyglass with her amber eye; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_livro_aberto_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "lendo um livro antigo de astronomia",
+   "prompt": "reading an old leather-bound astronomy book held open in one hand; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_mapa_estelar_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "abrindo um mapa estelar antigo",
+   "prompt": "unrolling an antique star chart with both hands; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_ponteiro_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "usando um ponteiro de professora pra cima",
+   "prompt": "holding a slim pointer stick, pointing upward like a lecturer; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_triste_escondido_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "tristeza escondida (perde o sorriso)",
+   "prompt": "quietly sad, no smile, looking down, the mask of humor slipping; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_prisma_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "segurando um prisma de vidro (luz)",
+   "prompt": "holding a glass prism, a thin rainbow of light passing through it; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_xicara_de_cha_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "tomando chá, entediada",
+   "prompt": "holding a teacup and saucer, bored sip; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_maca_gravidade_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "jogando uma maçã pra cima (gravidade)",
+   "prompt": "tossing an apple up with one hand, catching it, smug; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_lanterna_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "segurando uma lanterna antiga acesa",
+   "prompt": "holding a lit old brass lantern, warm light on her face; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "vanta_bussola_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "olhando uma bússola antiga",
+   "prompt": "holding an antique brass compass, looking at the needle; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  }
+ ]
+}

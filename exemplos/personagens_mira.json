@@ -1,0 +1,429 @@
+{
+ "formato": "personagens_pod_v1",
+ "canal": "astranebel",
+ "personagem": "mira",
+ "nome": "Mira",
+ "como_usar": "No BestEditor: 🧍 Personagens no pod → Novo → envie as imagens de 'referencias_sugeridas' (até 2) e este JSON. Gere a ⭐ mestre, aprove como mestre, depois gere o resto.",
+ "referencias_sugeridas": [
+  "01_mira_ficha_completa.png",
+  "03_mira_detalhe_olho_lagrima.png"
+ ],
+ "descricoes_referencias": {
+  "01_mira_ficha_completa.png": "the official character reference sheet of Mira (copy her design exactly)",
+  "03_mira_detalhe_olho_lagrima.png": "a close-up of Mira's blue-gray eye with the stylized blue tear mark under it"
+ },
+ "texto_fixo": {
+  "trava": "MIRA — CHARACTER LOCK (copy exactly from the reference images) - Young woman (not a child, not chibi), gentle melancholic face, pale skin, small red lips. - Hair: long, straight, deep-black, blunt straight bangs; a dark navy headband with ribbons. - Eyes: blue-gray, with TWO stylized blue tear marks under each eye (always visible). - Ornament: an antique-gold crescent moon on the right side of the headband; a gold crescent brooch on the bow. - Outfit: black Victorian-gothic dress, ivory ruffled collar and ivory ruffled cuffs, black bow with the  crescent brooch, long puffy black sleeves; black tights and black platform shoes (only in full body). - NEVER: other hair color, short hair, missing tear marks, missing crescent, casual/modern clothes,  chibi or child proportions, cyclops/one-eye look, pink/green/blue dress.",
+  "estilo": "ART STYLE (ASTRANEBEL): original 2D gothic-cosmic anime illustration with a classic 1980s hand-painted anime feel — clean consistent line art, cel shading with one or two shadow levels, very subtle film grain, melancholic elegant mood, strong readable silhouette. Exactly the drawing style of the character reference sheet. Palette: near-black #090A0F, charcoal #24232A, dusk blue #526F9A, soft blue #7C9EE8, ivory #F6E8D2, antique gold #C89B5B, muted crimson #A62636, silver gray #A7A9B3. Objects she holds are antique brass/gold, ivory paper or dark leather in the same style. Not 3D, not photorealistic, not glossy, not chibi, not a child.",
+  "regras": "FRAMING AND OUTPUT: a single character alone, half-body shot from the top of the head down to the hips; the hips are cut by the bottom edge of the image (no legs, no feet, no floor). Leave a little empty space above the head; the head is at the same height and scale as in the approved master. Plain flat pure white background (#FFFFFF), no shadow on the ground, no gradient, no glow, no frame. No text, no letters, no question marks, no speech bubbles, no sparkles, no watermark. Soft neutral front lighting. Clean edges."
+ },
+ "geracao": {
+  "largura": 1024,
+  "altura": 1536,
+  "passos": 40,
+  "cfg": 4.0
+ },
+ "canvas": [
+  1200,
+  1800
+ ],
+ "altura_personagem": 0.95,
+ "poses": [
+  {
+   "arquivo": "mira_neutra_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "neutra, mãos juntas na frente (pose da ficha)",
+   "prompt": "neutral, hands gently clasped in front of her, calm melancholic look; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips.",
+   "mestre": true
+  },
+  {
+   "arquivo": "mira_neutra_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "neutra, mãos juntas na frente (pose da ficha)",
+   "prompt": "neutral, hands gently clasped in front of her, calm melancholic look; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_curiosa_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "curiosa, cabeça inclinada",
+   "prompt": "curious, head tilted, eyes wide and attentive; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_curiosa_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "curiosa, cabeça inclinada",
+   "prompt": "curious, head tilted, eyes wide and attentive; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_maravilhada_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "maravilhada, olhos brilhando, mãos no peito",
+   "prompt": "awestruck, sparkling eyes, both hands pressed to her chest, lips parted; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_maravilhada_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "maravilhada, olhos brilhando, mãos no peito",
+   "prompt": "awestruck, sparkling eyes, both hands pressed to her chest, lips parted; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_empolgada_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "empolgada, apontando pra cima (pose da ficha)",
+   "prompt": "excited, pointing up with one finger, open happy mouth; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_empolgada_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "empolgada, apontando pra cima (pose da ficha)",
+   "prompt": "excited, pointing up with one finger, open happy mouth; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_pensando_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "pensando, dedo nos lábios (pose da ficha)",
+   "prompt": "thinking, index finger on her lips, looking up; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_pensando_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "pensando, dedo nos lábios (pose da ficha)",
+   "prompt": "thinking, index finger on her lips, looking up; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_surpresa_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "surpresa, boca aberta",
+   "prompt": "surprised, small open mouth, eyes wide, hands raised slightly; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_perguntando_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "fazendo uma pergunta, mão aberta",
+   "prompt": "asking a sincere question, one open hand raised, eyebrows lifted; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_perguntando_dir.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "fazendo uma pergunta, mão aberta",
+   "prompt": "asking a sincere question, one open hand raised, eyebrows lifted; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_insegura_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "insegura, tocando o pingente da lua (hábito dela)",
+   "prompt": "insecure, touching the gold crescent ornament with her fingers, looking down; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_globo_celeste_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "abraçando um globo/esfera celeste (pose da ficha)",
+   "prompt": "hugging a dark-blue celestial sphere with stars, eyes closed, content; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_globo_celeste_dir.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "abraçando um globo/esfera celeste (pose da ficha)",
+   "prompt": "hugging a dark-blue celestial sphere with stars, eyes closed, content; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_caderno_constelacoes_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "desenhando constelações num caderno (hábito dela)",
+   "prompt": "drawing constellations in a small notebook with a pencil (no readable writing); 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_fotografia_antiga_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "segurando uma foto antiga (a estrela riscada — lore)",
+   "prompt": "holding an old faded photograph with both hands, melancholic (photo content not visible); 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_olhando_telescopio_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "olhando por um telescópio antigo de latão",
+   "prompt": "looking through an antique brass telescope; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_neutra_esq_boca.png",
+   "tipo": "boca",
+   "base": "mira_neutra_esq.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "neutra, mãos juntas na frente (pose da ficha) — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "mira_neutra_dir_boca.png",
+   "tipo": "boca",
+   "base": "mira_neutra_dir.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "neutra, mãos juntas na frente (pose da ficha) — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "mira_curiosa_esq_boca.png",
+   "tipo": "boca",
+   "base": "mira_curiosa_esq.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "curiosa, cabeça inclinada — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "mira_curiosa_dir_boca.png",
+   "tipo": "boca",
+   "base": "mira_curiosa_dir.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "curiosa, cabeça inclinada — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "mira_maravilhada_esq_boca.png",
+   "tipo": "boca",
+   "base": "mira_maravilhada_esq.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "maravilhada, olhos brilhando, mãos no peito — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "mira_maravilhada_dir_boca.png",
+   "tipo": "boca",
+   "base": "mira_maravilhada_dir.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "maravilhada, olhos brilhando, mãos no peito — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "mira_perguntando_esq_boca.png",
+   "tipo": "boca",
+   "base": "mira_perguntando_esq.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "esq",
+   "descricao_pt": "fazendo uma pergunta, mão aberta — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "mira_perguntando_dir_boca.png",
+   "tipo": "boca",
+   "base": "mira_perguntando_dir.png",
+   "grupo": "boca",
+   "prioridade": 1,
+   "lado": "dir",
+   "descricao_pt": "fazendo uma pergunta, mão aberta — falando (boca aberta)",
+   "prompt": "Keep everything in this image identical — same character, same pose, same framing, same size, same colors, same white background. Change ONLY the mouth: slightly open, as if speaking in the middle of a sentence."
+  },
+  {
+   "arquivo": "mira_triste_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "triste / melancólica",
+   "prompt": "quietly sad, melancholic, eyes lowered; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_assustada_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "assustada",
+   "prompt": "frightened, shoulders raised, hands near her mouth; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_sorrindo_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "sorriso leve",
+   "prompt": "soft gentle smile, eyes slightly closed; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_ouvindo_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "ouvindo com atenção",
+   "prompt": "listening attentively, slight lean forward, hands clasped; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_confusa_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "confusa (sem desenhar '?')",
+   "prompt": "confused, eyebrows knit, finger on her cheek (do not draw any question mark); 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_pote_de_estrela_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "segurando um pote de vidro com uma estrelinha brilhando",
+   "prompt": "holding a glass jar with a tiny glowing star inside, warm light on her face; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_pote_de_estrela_dir.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "dir",
+   "descricao_pt": "segurando um pote de vidro com uma estrelinha brilhando",
+   "prompt": "holding a glass jar with a tiny glowing star inside, warm light on her face; 3/4 view, body and face turned toward image-RIGHT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_mapa_estelar_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "segurando um mapa estelar antigo",
+   "prompt": "holding an antique star chart open in front of her; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_lupa_meteorito_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "olhando um meteorito com uma lupa",
+   "prompt": "examining a small meteorite with a magnifying glass; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_livro_antigo_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "segurando um livro antigo de astronomia",
+   "prompt": "holding an old astronomy book against her chest; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_chave_observatorio_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 2,
+   "lado": "esq",
+   "descricao_pt": "segurando uma chave antiga (observatório — lore)",
+   "prompt": "holding a large antique key, looking at it thoughtfully; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_determinada_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "determinada",
+   "prompt": "determined, fists lightly clenched, firm look; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_cansada_esq.png",
+   "tipo": "pose",
+   "grupo": "reacao",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "sonolenta, apoiada (pose da ficha)",
+   "prompt": "sleepy, resting her cheek on her hand; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_vela_lanterna_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "segurando uma vela/lanterna acesa",
+   "prompt": "holding a small lit lantern, soft glow; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_astrolabio_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "segurando um astrolábio",
+   "prompt": "holding a brass astrolabe, studying it; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  },
+  {
+   "arquivo": "mira_xicara_de_cha_esq.png",
+   "tipo": "pose",
+   "grupo": "objeto",
+   "prioridade": 3,
+   "lado": "esq",
+   "descricao_pt": "segurando uma xícara de chá quente",
+   "prompt": "holding a warm cup of tea with both hands; 3/4 view, body and face turned toward image-LEFT; half-body, head to hips."
+  }
+ ]
+}
